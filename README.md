@@ -1,21 +1,92 @@
-# SimpleNotes
+# 📝 SimplesNote
+SimplesNote é uma aplicação web simples para gerenciar notas com autenticação de usuários, desenvolvida com Node.js, Express e MySQL. O projeto oferece funcionalidades básicas como registro, login, criação, edição e remoção de notas.
 
-Um sistema simples de login e anotações usando Node.js, Express e MySQL.
+## 🚀 Funcionalidades
+* ✅ Registro e login de usuários com autenticação via JWT
 
-## Funcionalidades implementadas
+* ✅ Criação de notas associadas ao usuário autenticado
 
-- Registro e login com autenticação via JWT
-- Salvar e deletar anotações vinculadas ao usuário
-- Dados persistidos em MySQL
-- Estrutura pronta para expandir com edição de notas no futuro
+* ✅ Edição de notas existentes
 
-## Status do projeto
+* ✅ Remoção de notas
 
-🚧 90% concluído  
-📌 O projeto cumpre seu propósito de aprendizado, mas a edição de notas ainda será implementada em versões futuras.
+* ✅ Armazenamento dos dados em MySQL
 
-## Objetivo
+* ✅ Organização simples de rotas e estrutura de pastas
 
-Esse projeto faz parte da minha jornada gamificada de aprendizado em programação backend. Foi fundamental para entender melhor como conectar front-end com back-end e lidar com banco de dados MySQL.
+## Tecnologias
 
----
+* Node.js
+
+* Express
+
+* MySQL
+
+* JWT
+
+* dotenv
+
+* cookie-parser
+
+## 🔒 Segurança
+* As senhas dos usuários são codificadas com base64 (⚠️ não recomendado para produção, use bcrypt ou argon2).
+
+* O token JWT é salvo em cookies e verificado em rotas protegidas.
+
+* Variáveis sensíveis estão armazenadas no arquivo .env.
+
+## 📦 Instalação
+
+1. Clone o repositório:
+
+`````
+git clone https://github.com/RafaelHenriqu/SimplesNote.git
+
+`````
+
+2. Instale as dependências:
+````
+npm install
+````
+
+3. Configure o arquivo .env com suas credenciais MySQL:
+
+````
+host=localhost
+user=seu_usuario
+password=sua_senha
+database=seu_banco
+port=3306
+Secret=sua_chave_jwt
+````
+4. Crie o banco de dados com duas tabelas:
+
+````
+CREATE TABLE users (
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255),
+    Password VARCHAR(255),
+    Email VARCHAR(255)
+);
+
+CREATE TABLE notes (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Title TEXT,
+    Desc_SQL TEXT,
+    UserID INT
+);
+````
+5. Inicie o servidor:
+````
+node server.js
+````
+Acesse em http://localhost:5000.
+
+
+
+## 🎯 Objetivo
+Este projeto foi desenvolvido como parte de uma jornada de aprendizado em backend e serve como um marco de evolução técnica, integrando front-end e back-end de maneira prática.
+
+📌 Observações
+* O projeto pode conter falhas pontuais, pois foi feito como exercício de aprendizado.
+

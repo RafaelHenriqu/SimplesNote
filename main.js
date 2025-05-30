@@ -24,25 +24,26 @@ function JsonWebToken(Next,UserID,res){
 }
 
 
-function Verify_Accont(req,res,next){
+function Verify_Accont(req, res, next) {
+    const token = req.cookies.Token;
     
-    try{
-        JWT.verify(req.cookies.Token,process.env.Secret)
-    if (!req.cookies.Token){   
-        res.redirect("/Login")
+    if (!token) {
+        return res.redirect("/Login");
     }
 
-}catch{
-res.redirect("/Login")
+    try {
+        const decoded = JWT.verify(token, process.env.Secret);
+        req.user = decoded;  
+        next(); 
+    } catch (err) {
+        return res.redirect("/Login");
+    }
 }
 
-
-}
 
 
 // Express Config //
 const Express = require("express")
-const { flushCompileCache } = require("module")
 const { console } = require("inspector")
 const App = Express()
 
@@ -86,7 +87,6 @@ App.post("/Login", (req, res, next) => {
             JsonWebToken(next, user.UserID, res);
             return res.redirect("/");
         } else {
-            // opcional: redireciona se login falhar
             return res.redirect("/Login");
         }
     });
@@ -121,12 +121,23 @@ App.get("/Notes",(req,res)=>{
     })
 })
 
-App.post("/Remove_Note",(req,res)=>{
+
+App.post("/Remove_Note",(req,res,next)=>{
     MySQL.query("DELETE FROM notes where ID = ?",[req.body.id])
+    return res.redirect("/")
 })
 
 
+App.get("/Edit_Note/:Id",(req,res)=>{
+    res.cookie("Note_ID",req.params.Id)
+    res.sendFile(`${__dirname}/Public/View/Edit.html`)
+})
 
+App.post("/Edit_Note",(req,res)=>{
+    const {Title,Desc} = req.body
+    MySQL.query("UPDATE notes SET Title = ?,Desc_SQL = ? where ID = ?",[Title,Desc,req.cookies.Note_ID])
+    res.redirect("/")
+})
 
 
 App.listen(5000,()=>{

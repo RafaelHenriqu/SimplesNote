@@ -65,7 +65,7 @@
                 })
             })
             Edit.addEventListener("click",(e)=>{
-                location.href = "/Edit_Note"
+                location.href = `/Edit_Note/${e.target.parentElement.parentElement.id}`
             })
 
             li.appendChild(h1)
@@ -81,7 +81,7 @@
 
 
     document.getElementById("Add").addEventListener("click",()=>{
-        location.href = "/Add_Note"
+        location.href = `/Add_Note`
     })
 
 </script>
