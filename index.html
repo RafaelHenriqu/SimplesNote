@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Style/Style.css">
+    <title>SimplesNote</title>
+</head>
+<body>
+    <main>
+        <header><h1>SimplesNote</h1><button id="Add" class="imgs_button"></button></header>
+        <hr>
+        <section id="Annotations">
+
+            <ul id="Notes">
+
+
+
+                
+
+
+            </ul>
+
+
+        </section>
+    </main>
+</body>
+
+<script>
+    fetch("/Notes").then(response => response.json()).then(data =>{
+        data.forEach(e=>{
+            
+            const li = document.createElement("li")
+            const h1 = document.createElement("h1")
+            const p = document.createElement("p")
+            const Buttons = document.createElement("div")
+            const Edit = document.createElement("button")
+            const Remove = document.createElement("button")
+            Edit.id = "Edit"
+            Edit.className = "imgs_button"
+            Remove.id = "Remove"
+            Remove.className = "imgs_button"
+            Buttons.id = "Button"
+            h1.id = "Title"
+            h1.innerHTML = e.Title
+            p.id = "Description"
+            p.innerHTML = e.Desc_SQL
+            li.id = e.ID
+            Edit.addEventListener("click",(e)=>{
+                 location.href = "/Edit_Note"
+            })
+            Remove.addEventListener("click",(e)=>{
+                fetch("/Remove_Note",{
+                    method: "POST",
+                    headers:{
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        id: e.target.parentElement.parentElement.id
+                    })
+                }).then(res =>{
+                    if (res.ok){
+                        location.reload()
+                    }
+                })
+            })
+            Edit.addEventListener("click",(e)=>{
+                location.href = "/Edit_Note"
+            })
+
+            li.appendChild(h1)
+            li.appendChild(p)
+            li.appendChild(Buttons)
+            Buttons.appendChild(Edit)
+            Buttons.appendChild(Remove)
+            document.getElementById("Notes").appendChild(li)
+        })
+    })
+
+    
+
+
+    document.getElementById("Add").addEventListener("click",()=>{
+        location.href = "/Add_Note"
+    })
+
+</script>
+
+</html>

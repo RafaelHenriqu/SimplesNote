@@ -1,0 +1,142 @@
+*{
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    transition: 500ms;
+}
+body{
+    height: 100vh;
+    background-image: linear-gradient(to top,#191920,#222222);
+}
+main{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    height: 90vh;
+    border-radius: .5vh;
+    border: 1px solid #ffff;
+}
+header{
+    margin-top: 2vh;
+    text-align: center;
+    color: #ffff;
+    font-family: 'Times New Roman', Times, serif;
+    display: inline;
+}
+hr{
+    width: 55%;
+    height: .1vh;
+    border-radius: 5vh;
+    background-color: #ffff;
+    margin: auto;
+}
+header > h1{
+    font-size: 4vh;
+    font-family: 'Times New Roman', Times, serif;
+    /* border: 1px solid white;
+    border-radius: 5vh; */
+    width: 50%;
+    margin: auto;
+    margin-bottom: 1vh;
+    /* background-color: #222222; */
+}
+h1:hover{
+    font-size: 4.1vh;
+
+}
+#Annotations{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    height: 80vh;
+    overflow: scroll;
+    
+}
+#Description{
+    color: #ffff;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#Title{
+    color: #ffff;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+li{
+    background-color: #222222;
+    border: 1px solid white;
+    border-radius: 5vh;
+    margin: 1vh;
+}
+::-webkit-scrollbar, ::-webkit-scrollbar-corner{
+    background-color: transparent;
+}
+#Button{
+    text-align: center;
+}
+.imgs_button{
+    width: 5vh;
+    height: 5vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0px;
+    background-color: transparent;
+}
+
+#Add{
+    position: absolute;
+    left: 90%;
+    transform: translate(0,-50%);
+    background-image: url(../Img/add.png);
+}
+
+#Edit{
+    background-image: url(../Img/edit.png);
+}
+#Remove{
+    background-image: url(../Img/remove.png);
+}
+
+h1{
+    color: #ffff;
+}
+
+form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 60%;
+    height: 75vh;
+    border-radius: .5vh;
+    margin: auto;
+}
+form > h1{
+    text-align: center;
+}
+
+input{
+    text-align: center;
+    width: 60%;
+    height: 2.3vh;
+    margin: auto;
+    display: block;
+    border-radius: .4vh;
+    font-size: large;
+    margin-bottom: 1vh;
+    background-color: #2a7fcf;
+}
+input[type="submit"]{
+    color: #ffff;
+    width: 50%;
+}
+::placeholder{
+    color: #ffff;
+}
